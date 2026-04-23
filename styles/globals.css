@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --surface: 251 250 247;
+  --panel: 255 255 255;
+  --panel-muted: 244 241 235;
+  --border: 226 220 210;
+  --text: 19 20 24;
+  --muted: 111 106 99;
+  --accent: 227 56 90;
+}
+
+.dark {
+  color-scheme: dark;
+  --surface: 3 4 7;
+  --panel: 10 12 17;
+  --panel-muted: 18 21 29;
+  --border: 42 45 56;
+  --text: 247 247 245;
+  --muted: 164 160 154;
+  --accent: 227 56 90;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: rgb(var(--surface));
+  color: rgb(var(--text));
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+::selection {
+  background: rgba(var(--accent), 0.28);
+}
+
+.glass-panel {
+  border: 1px solid rgba(var(--border), 0.72);
+  background:
+    linear-gradient(145deg, rgba(var(--panel), 0.82), rgba(var(--panel-muted), 0.46)),
+    rgba(var(--panel), 0.76);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(22px);
+}
+
+.dark .glass-panel {
+  background:
+    linear-gradient(145deg, rgba(22, 26, 35, 0.76), rgba(6, 7, 11, 0.72)),
+    rgba(10, 12, 17, 0.74);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.34);
+}
+
+.ambient-grid {
+  background-image:
+    linear-gradient(rgba(var(--border), 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--border), 0.14) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(circle at top, black, transparent 72%);
+}
+
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.35'/%3E%3C/svg%3E");
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(var(--accent), 0.44);
+  border-radius: 999px;
+}
